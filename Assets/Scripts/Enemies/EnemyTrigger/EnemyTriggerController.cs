@@ -6,7 +6,7 @@ public class EnemyTriggerController : MonoBehaviour
 {
     //Different speed variables 
     [SerializeField] private float actualSpeed;
-    [SerializeField] private float patrolSpeed;
+    public float patrolSpeed;
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float runSpeed;
 
@@ -28,7 +28,8 @@ public class EnemyTriggerController : MonoBehaviour
     private Animator enemyAnimator;
 
     //Patrol spots
-    public Transform[] moveSpots;
+    public GameObject moveSpots;
+    public int actualSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -50,14 +51,16 @@ public class EnemyTriggerController : MonoBehaviour
         {
             if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
             {
-                enemyAnimator.SetFloat("actualSpeed", actualSpeed);
-
+                enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
+                transform.GetComponent<Animator>().SetBool("isPatrolling", false);
                 transform.GetComponent<Animator>().SetBool("isChasing", true); 
             }
         
         }
         else
         {
+            enemyAnimator.SetFloat("actualSpeed", patrolSpeed);
+            transform.GetComponent<Animator>().SetBool("isPatrolling", true);
             transform.GetComponent<Animator>().SetBool("isChasing", false);
         }
 

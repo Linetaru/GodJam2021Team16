@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 8852464016166608806}
   - component: {fileID: 4235215471886598631}
   - component: {fileID: 464470748}
-  - component: {fileID: 464470749}
   - component: {fileID: 1944101873485828053}
   - component: {fileID: 3476908082679638259}
   - component: {fileID: 464470750}
+  - component: {fileID: 464470757}
+  - component: {fileID: 464470749}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -121,10 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualSpeed: 5
-  patrolSpeed: 0
+  patrolSpeed: 5
   chaseSpeed: 0
   runSpeed: 0
-  triggerRange: 20
+  triggerRange: 5
   chasingDuration: 5
   runningDuration: 0
   stoppingTimeAfterChase: 5
@@ -132,6 +133,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  moveSpots: {fileID: 0}
+  actualSpot: 0
 --- !u!50 &464470748
 Rigidbody2D:
   serializedVersion: 4
@@ -153,22 +156,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &464470749
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6205519535657252202}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.33}
-  serializedVersion: 2
-  m_Radius: 1.9
 --- !u!114 &1944101873485828053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 2.1
+  radius: 1.4
   height: 2
   repathRate: 0.5
   canSearch: 1
@@ -199,7 +186,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2.4
+  pickNextWaypointDist: 1.41
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
@@ -247,3 +234,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &464470757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205519535657252202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf7ea72772fb4f4cad59915fff75350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiPath: {fileID: 1944101873485828053}
+--- !u!70 &464470749
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205519535657252202}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.24386895, y: 0.18785763}
+  m_Size: {x: 2.5114877, y: 2.8856268}
+  m_Direction: 0

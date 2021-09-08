@@ -12,6 +12,7 @@ public class ChaseBehavior : StateMachineBehaviour
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         animator.GetComponentInParent<Pathfinding.AIDestinationSetter>().target = playerPos;
+        animator.GetComponentInParent<Pathfinding.AIPath>().maxSpeed = animator.GetFloat("actualSpeed") ;
         actualChasingTimer = animator.GetFloat("chasingDuration");
     }
 
@@ -20,13 +21,10 @@ public class ChaseBehavior : StateMachineBehaviour
     {
         actualChasingTimer -= Time.deltaTime;
 
-
-
         if (actualChasingTimer <= 0)
         {
             animator.SetBool("mustIdle", true);
             animator.SetBool("isChasing", false);
-            
         }
 
     }
