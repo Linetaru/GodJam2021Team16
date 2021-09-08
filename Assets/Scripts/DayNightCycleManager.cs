@@ -28,7 +28,9 @@ public class DayNightCycleManager : MonoBehaviour
     private float _changingTime = 0f;
     private bool _isItDay = true;
     private int _numberEnemieSpawned = 0;
+    private int _lastValidDay = 0;
     private SpawnerManager _spawnerManager;
+    private int _nbOfEnemieForTheDay;
 
     private void Awake()
     {
@@ -40,8 +42,10 @@ public class DayNightCycleManager : MonoBehaviour
     {
         _currentTime = Time.time;
         _changingTime = Time.time + numberOfSecondsInOneDay;
-        float timeIntervalBetweenSpawn = numberOfSecondsInOneDay / (numberOfEnemieToSpawnPerDay[_currentDay - 1] + 1);
+        _nbOfEnemieForTheDay = numberOfEnemieToSpawnPerDay[_currentDay - 1];
+        float timeIntervalBetweenSpawn = numberOfSecondsInOneDay / (_nbOfEnemieForTheDay + 1);
         InvokeRepeating("SpawnRepeating", timeIntervalBetweenSpawn, timeIntervalBetweenSpawn);
+        print("Enemy for the day : " + _nbOfEnemieForTheDay);
     }
 
     public int getCurrentDay()
@@ -72,7 +76,24 @@ public class DayNightCycleManager : MonoBehaviour
 
                 InvokeRepeating("AugmentLight", 0, 0.1f);
 
-                float timeIntervalBetweenSpawn = numberOfSecondsInOneDay / (numberOfEnemieToSpawnPerDay[_currentDay - 1] + 1);
+                _nbOfEnemieForTheDay = 5;
+                if (_currentDay > numberOfEnemieToSpawnPerDay.Count)
+                {
+                    _nbOfEnemieForTheDay = numberOfEnemieToSpawnPerDay[_lastValidDay] 
+                        + (numberOfEnemieToSpawnPerDay[_lastValidDay] 
+                        - ((_lastValidDay - 1) < 0 
+                        ? 0 
+                        : numberOfEnemieToSpawnPerDay[_lastValidDay - 1]));
+                } else
+                {
+                    _lastValidDay = _currentDay - 1;
+                    _nbOfEnemieForTheDay = numberOfEnemieToSpawnPerDay[_lastValidDay];
+                }
+
+
+                print("Enemy for the day : " + _nbOfEnemieForTheDay);
+
+                float timeIntervalBetweenSpawn = numberOfSecondsInOneDay / (_nbOfEnemieForTheDay + 1);
                 InvokeRepeating("SpawnRepeating", timeIntervalBetweenSpawn, timeIntervalBetweenSpawn);
 
                 if (onDayStart != null)
@@ -80,7 +101,6 @@ public class DayNightCycleManager : MonoBehaviour
             } else if (!_isItDay)
             {
                 _changingTime = Time.time + numberOfSecondsInOneNight;
-                print("ITS the start of night!!!");
                 
                 InvokeRepeating("ReduceLight", 0, 0.1f);
                 if (onNightStart != null)
@@ -91,7 +111,7 @@ public class DayNightCycleManager : MonoBehaviour
 
     void SpawnRepeating()
     {
-        if (_numberEnemieSpawned < numberOfEnemieToSpawnPerDay[_currentDay - 1])
+        if (_numberEnemieSpawned < _nbOfEnemieForTheDay)
         {
             _spawnerManager.MakeSpawnerSpawnAEntity();
             _numberEnemieSpawned++;
