@@ -19,7 +19,6 @@ public class EnemyTriggerController : MonoBehaviour
 
     //Cooldown between actions
     [SerializeField] public float stoppingTimeAfterChase;
-    private float actualTime;
     [SerializeField] private float stoppingTimeAfterRun;
 
     //Layer detection mask
@@ -27,6 +26,9 @@ public class EnemyTriggerController : MonoBehaviour
 
     //Animator link
     private Animator enemyAnimator;
+
+    //Patrol spots
+    public Transform[] moveSpots;
 
     // Start is called before the first frame update
     void Start()
