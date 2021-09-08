@@ -27,10 +27,25 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Mouvements 
+
         Vector3 movement = new Vector3(player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
         if (movement.sqrMagnitude > 1.0f) movement.Normalize();
         transform.position += movement * Time.deltaTime * moveSpeed;
 
+        // Flip character
 
+        Vector3 characterScale = transform.localScale;
+        if(player.GetAxis("HorizontalMove") < 0)
+        {
+            characterScale.x = -7;
+        }
+
+        if (player.GetAxis("HorizontalMove") > 0)
+        {
+            characterScale.x = 7;
+        }
+
+        transform.localScale = characterScale;
     }
 }
