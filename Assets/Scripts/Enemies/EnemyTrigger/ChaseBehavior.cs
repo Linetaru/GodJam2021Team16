@@ -11,6 +11,7 @@ public class ChaseBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        animator.GetComponentInParent<Pathfinding.AIDestinationSetter>().target = playerPos;
         actualChasingTimer = animator.GetFloat("chasingDuration");
     }
 
@@ -18,9 +19,9 @@ public class ChaseBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         actualChasingTimer -= Time.deltaTime;
-        
-        animator.transform.position = Vector2.MoveTowards(animator.transform.position, playerPos.position, animator.GetFloat("actualSpeed") * Time.deltaTime);
-        
+
+
+
         if (actualChasingTimer <= 0)
         {
             animator.SetBool("mustIdle", true);
@@ -33,7 +34,7 @@ public class ChaseBehavior : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.GetComponentInParent<Pathfinding.AIDestinationSetter>().target = null;
     }
 
   
