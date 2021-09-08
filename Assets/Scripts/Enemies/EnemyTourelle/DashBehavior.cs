@@ -22,6 +22,8 @@ public class DashBehavior : StateMachineBehaviour
         if(controller.isInFear)
             animator.SetBool("isDashing", false);
 
+        controller.DoParticule();
+
         animator.transform.position = Vector2.MoveTowards(animator.transform.position, playerPos - ((posBeforeDash - playerPos)), animator.GetFloat("powerDash") * Time.deltaTime);
         
         if(animator.transform.position == playerPos - ((posBeforeDash - playerPos)))

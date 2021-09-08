@@ -9,12 +9,15 @@ public class EnemyTourelleController : MonoBehaviour
 
     [SerializeField] public float stoppingTimeAfterDash;
 
+    [SerializeField] public ParticleSystem dashEffect;
+
     Collider2D playerDetection;
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] private LayerMask layerWallMask;
 
     private bool isPlayerClipped;
+    
 
     [ReadOnly] public bool isInFear;
 
@@ -96,6 +99,11 @@ public class EnemyTourelleController : MonoBehaviour
             enemyAnimator.SetBool("mustIdle", true);
             enemyAnimator.SetBool("isDashing", false);
         }
+    }
+
+    public void DoParticule()
+    {
+        dashEffect.Play();
     }
 
     //Just some display to check detection
