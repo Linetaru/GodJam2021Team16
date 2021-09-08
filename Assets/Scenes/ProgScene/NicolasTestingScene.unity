@@ -495,14 +495,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 92668372067425754, guid: 9ba2627ed9297c946af18177df72a65f, type: 3}
-      propertyPath: m_Size.x
-      value: 4.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 92668372067425754, guid: 9ba2627ed9297c946af18177df72a65f, type: 3}
-      propertyPath: m_Size.y
-      value: 4.8093753
-      objectReference: {fileID: 0}
     - target: {fileID: 92668372067425755, guid: 9ba2627ed9297c946af18177df72a65f, type: 3}
       propertyPath: m_Name
       value: Ennemy Turret
