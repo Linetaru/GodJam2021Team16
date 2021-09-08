@@ -6,7 +6,9 @@ using Rewired;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 7f;
+    public float moveSpeed = 7f;
+
+    public Rigidbody2D rb;
 
     [SerializeField] private int playerID = 0;
     [SerializeField] private Player player;
@@ -17,10 +19,18 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        
+
+    }
+
+    private void FixedUpdate()
     {
         Vector3 movement = new Vector3(player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
-        transform.position += movement * Time.deltaTime * speed;
+        if (movement.sqrMagnitude > 1.0f) movement.Normalize();
+        transform.position += movement * Time.deltaTime * moveSpeed;
+
 
     }
 }
