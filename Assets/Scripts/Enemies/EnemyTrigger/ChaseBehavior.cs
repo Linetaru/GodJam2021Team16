@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChaseBehavior : StateMachineBehaviour
 {
 
-    private Transform playerPos;
+    public Transform playerPos;
     [SerializeField] private float actualChasingTimer;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
