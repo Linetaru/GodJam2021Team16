@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class DayNightCycleManager : MonoBehaviour
 {
     public static DayNightCycleManager current;
+
+    [Header("References")]
+    [SerializeField] private Light2D dayLight;
 
     [Header("Day Settings")]
     [SerializeField] float numberOfSecondsInOneDay;
@@ -66,6 +70,8 @@ public class DayNightCycleManager : MonoBehaviour
                 _currentDay++;
                 _changingTime = Time.time + numberOfSecondsInOneDay;
 
+                InvokeRepeating("AugmentLight", 0, 0.1f);
+
                 float timeIntervalBetweenSpawn = numberOfSecondsInOneDay / (numberOfEnemieToSpawnPerDay[_currentDay - 1] + 1);
                 InvokeRepeating("SpawnRepeating", timeIntervalBetweenSpawn, timeIntervalBetweenSpawn);
 
@@ -74,8 +80,9 @@ public class DayNightCycleManager : MonoBehaviour
             } else if (!_isItDay)
             {
                 _changingTime = Time.time + numberOfSecondsInOneNight;
-                CancelInvoke();
-                _numberEnemieSpawned = 0;
+                print("ITS the start of night!!!");
+                
+                InvokeRepeating("ReduceLight", 0, 0.1f);
                 if (onNightStart != null)
                     onNightStart.Invoke();
             }
@@ -88,6 +95,26 @@ public class DayNightCycleManager : MonoBehaviour
         {
             _spawnerManager.MakeSpawnerSpawnAEntity();
             _numberEnemieSpawned++;
+        }
+    }
+
+    void ReduceLight()
+    {
+        dayLight.intensity -= 0.1f;
+        if (dayLight.intensity <= 0f)
+        {
+            dayLight.intensity = 0f;
+            CancelInvoke();
+            _numberEnemieSpawned = 0;
+        }
+    }
+
+    void AugmentLight()
+    {
+        dayLight.intensity += 0.1f;
+        if (dayLight.intensity >= 1)
+        {
+            dayLight.intensity = 1f;
         }
     }
 }
