@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: 1650261513044955153
     second: Scratch-Sheet_6
+  - first:
+      213: 4615223971841202227
+    second: Scratch-Sheet_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -278,6 +281,27 @@ TextureImporter:
       bones: []
       spriteID: 1101b874a18e6e610800000000000000
       internalID: 1650261513044955153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratch-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 0
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3385678ffb19c0040800000000000000
+      internalID: 4615223971841202227
       vertices: []
       indices: 
       edges: []

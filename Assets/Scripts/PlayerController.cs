@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
     {
     }
 
+    public void PlayerDie()
+    {
+        this.GetComponent<Animator>().SetTrigger("Dead");
+    }
+
     private void FixedUpdate()
     {
         // Mouvements 
@@ -46,7 +51,20 @@ public class PlayerController : MonoBehaviour
             if (movement.sqrMagnitude > 1.0f) movement.Normalize();
             transform.position += movement * Time.deltaTime * moveSpeed;
 
-            // Flip character
+        Vector3 movement = new Vector3(-player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
+        if(movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
+        {
+            this.GetComponent<Animator>().SetBool("isWalking", true);
+            this.GetComponent<Animator>().SetBool("isIdle", false);
+        }
+        else if(movement == Vector3.zero && this.GetComponent<Animator>().GetBool("isWalking"))
+        {
+
+            this.GetComponent<Animator>().SetBool("isIdle", true);
+            this.GetComponent<Animator>().SetBool("isWalking", false);
+        }
+        if (movement.sqrMagnitude > 1.0f) movement.Normalize();
+        transform.position += movement * Time.deltaTime * moveSpeed;
 
             Vector3 characterScale = transform.localScale;
             if (player.GetAxis("HorizontalMove") > 0)
@@ -54,26 +72,10 @@ public class PlayerController : MonoBehaviour
                 characterScale.x = -7;
             }
 
-            if (player.GetAxis("HorizontalMove") < 0)
-            {
-                characterScale.x = 7;
-            }
-
-            transform.localScale = characterScale;
-        }
-    }
-
-    public void Damage(float damage)
-    {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
+        Quaternion characterScale = transform.rotation;
+        if(player.GetAxis("HorizontalMove") > 0)
         {
-            _currentHealth = 0;
-
-
-
-            if (onDeath != null)
-                onDeath.Raise();
+            characterScale.y = 180;
         }
     }
 
@@ -97,18 +99,10 @@ public class PlayerController : MonoBehaviour
         playerLight.intensity -= 0.01f;
         if (playerLight.intensity <= 0)
         {
-            CancelInvoke("ReduceLampLight");
-            playerLight.intensity = 0;
+            characterScale.y = 0;
         }
     }
 
-    void AugmentLampLight()
-    {
-        playerLight.intensity += 0.01f;
-        if (playerLight.intensity >= 1)
-        {
-            CancelInvoke("AugmentLampLight");
-            playerLight.intensity = 1;
-        }
+        transform.rotation = characterScale;
     }
 }

@@ -7,9 +7,9 @@ public class PlayerAttack : MonoBehaviour
 {
     // Cooldown d'attaque
 
-    public float timeBtwAttack;
+    [ReadOnly] public float timeBtwAttack;
     public float startBtwAttack;
-    public bool night;
+    [ReadOnly] public bool night;
 
     // Attaque sur les ennemis 
 
@@ -17,11 +17,14 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPos;
     public LayerMask Ennemy;
     public int damage = 50;
-    
-    
+
+    public bool canAnimationWorkWhenNoEnnemiesInRange;
+
+    public Animator attackAnimation;
+
     // Start is called before the first frame update
 
-    [SerializeField] private int playerID = 0;
+    [ReadOnly] [SerializeField] private int playerID = 0;
     [SerializeField] private Player player;
 
     private void Start()
@@ -60,9 +63,15 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] damageEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, Ennemy);
                 print("Grrrrrr !");
 
+                if(damageEnemies.Length > 0 && !canAnimationWorkWhenNoEnnemiesInRange)
+                    attackAnimation.SetTrigger("Attack");
+                else if(canAnimationWorkWhenNoEnnemiesInRange)
+                    attackAnimation.SetTrigger("Attack");
+
                 for (int i = 0; i < damageEnemies.Length; i++)
                 {
                     damageEnemies[i].GetComponent<Enemy>().TakeDamage(damage);
+
                 }
 
                 timeBtwAttack = startBtwAttack;
@@ -76,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
