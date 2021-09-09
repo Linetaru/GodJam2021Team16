@@ -17,7 +17,10 @@ public class SpawnerManager : MonoBehaviour
     public void MakeSpawnerSpawnAEntity()
     {
         int spawnerIndex = Random.Range(0, _spawners.Length);
-        EnemySpawner spawner = _spawners[spawnerIndex].GetComponent<EnemySpawner>();
-        spawner.SpawnEnemy();
+        if (_spawners.Length > 0)
+        {
+            EnemySpawner spawner = _spawners[spawnerIndex].GetComponent<EnemySpawner>();
+            spawner.SpawnEnemy();
+        }
     }
 }

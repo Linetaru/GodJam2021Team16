@@ -1066,5 +1066,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: DayNightManager
       objectReference: {fileID: 0}
+    - target: {fileID: 579893747853646197, guid: 5827c3068079ebe4b99072fe144bb2e4, type: 3}
+      propertyPath: numberOfEnemieToSpawnPerDay.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5827c3068079ebe4b99072fe144bb2e4, type: 3}

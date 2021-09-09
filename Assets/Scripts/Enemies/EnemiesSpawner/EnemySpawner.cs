@@ -13,7 +13,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        print(DayNightCycleManager.current);
     }
 
     void Start()
@@ -23,7 +22,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        print(DayNightCycleManager.current.getCurrentDay());
         int currentDay = DayNightCycleManager.current.getCurrentDay();
 
         List<SpawningEntity> possibleSpawning = new List<SpawningEntity>();
@@ -35,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
 
         int selectedEntityToSpawn = Random.Range(0, possibleSpawning.Count);
 
-        Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, transform.position, transform.rotation);
+        GameObject enemySpawned = Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, transform.position, transform.rotation);
+        enemySpawned.transform.parent = this.transform.parent;
+        enemySpawned.name = possibleSpawning[selectedEntityToSpawn].entityToSpawn.name;
     }
 }

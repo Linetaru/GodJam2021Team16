@@ -122,18 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualSpeed: 5
-  patrolSpeed: 5
-  chaseSpeed: 0
-  runSpeed: 0
+  patrolSpeed: 8
+  chaseSpeed: 10
+  runSpeed: 10
   triggerRange: 5
   chasingDuration: 5
-  runningDuration: 0
+  runningDuration: 5
   stoppingTimeAfterChase: 5
   stoppingTimeAfterRun: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpots: {fileID: 0}
+  moveSpots: {fileID: 4710172064194015867, guid: c104a8dbb18e6f049a98d2f72e9ee90e, type: 3}
   actualSpot: 0
 --- !u!50 &464470748
 Rigidbody2D:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 1.4
+  radius: 1.09
   height: 2
   repathRate: 0.5
   canSearch: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 1.41
+  pickNextWaypointDist: 1.98
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
@@ -260,6 +260,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24386895, y: 0.18785763}
-  m_Size: {x: 2.5114877, y: 2.8856268}
+  m_Offset: {x: -0.19237244, y: 0.18785763}
+  m_Size: {x: 2.4084947, y: 2.8856268}
   m_Direction: 0

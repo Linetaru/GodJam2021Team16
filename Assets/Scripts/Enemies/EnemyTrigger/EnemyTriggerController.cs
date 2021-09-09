@@ -31,12 +31,20 @@ public class EnemyTriggerController : MonoBehaviour
     public GameObject moveSpots;
     public int actualSpot;
 
+
+    private Transform playerPos;
+    private float actualRunningTime;
+
+    private DayNightCycleManager dayNightCycle;
     // Start is called before the first frame update
     void Start()
     {
         enemyAnimator = transform.GetComponent<Animator>();
         enemyAnimator.SetFloat("chasingDuration", chasingDuration);
         enemyAnimator.SetFloat("idleDuration", stoppingTimeAfterChase);
+
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        dayNightCycle = DayNightCycleManager.current;
 
     }
 
@@ -45,23 +53,58 @@ public class EnemyTriggerController : MonoBehaviour
     {
         // Détection du joueur
 
-
-        Collider2D playerDetection = Physics2D.OverlapCircle(transform.position, triggerRange, layerMask);
-        if (!(playerDetection is null))
-        {
-            if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
-            {
-                enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
-                transform.GetComponent<Animator>().SetBool("isPatrolling", false);
-                transform.GetComponent<Animator>().SetBool("isChasing", true); 
-            }
         
-        }
-        else
+        Collider2D playerDetection = Physics2D.OverlapCircle(transform.position, triggerRange, layerMask);
+        if (!dayNightCycle.isDay())
         {
-            enemyAnimator.SetFloat("actualSpeed", patrolSpeed);
-            transform.GetComponent<Animator>().SetBool("isPatrolling", true);
+            transform.GetComponent<Animator>().SetBool("isPatrolling", false);
             transform.GetComponent<Animator>().SetBool("isChasing", false);
+            transform.GetComponent<Animator>().SetBool("isRunning", true);
+            if (!(playerDetection is null) && !enemyAnimator.GetBool("mustIdle")) {
+
+                actualRunningTime = runningDuration;
+
+                enemyAnimator.SetFloat("actualSpeed", runSpeed);
+
+                
+                transform.GetComponent<Animator>().SetBool("isRunning", false);
+                transform.GetComponent<Animator>().SetBool("isAvoiding", true);
+                
+            }
+            else
+            {
+                actualRunningTime -= Time.deltaTime;
+
+                if (actualRunningTime <= 0)
+                {
+                    transform.GetComponent<Animator>().SetBool("isRunning", true);
+                    transform.GetComponent<Animator>().SetBool("isAvoiding", false);
+                }
+                
+            }
+        }
+        else if (dayNightCycle.isDay())
+        {
+            if (!(playerDetection is null))
+            {
+                    if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
+                    {
+                        enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
+                        transform.GetComponent<Animator>().SetBool("isRunning", false);
+                        transform.GetComponent<Animator>().SetBool("isAvoiding", false);
+                        transform.GetComponent<Animator>().SetBool("isPatrolling", false);
+                        transform.GetComponent<Animator>().SetBool("isChasing", true);
+                    }
+
+            }
+            else
+            {
+                enemyAnimator.SetFloat("actualSpeed", patrolSpeed);
+                transform.GetComponent<Animator>().SetBool("isPatrolling", true);
+                transform.GetComponent<Animator>().SetBool("isRunning", false);
+                transform.GetComponent<Animator>().SetBool("isAvoiding", false);
+                transform.GetComponent<Animator>().SetBool("isChasing", false);
+            }
         }
 
     }
