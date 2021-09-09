@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4271566352236329742
+--- !u!1001 &429404791489365556
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 113868, guid: 72eec0d451241354eaba5dd6caf318ab, type: 3}
       propertyPath: m_Name
-      value: FireFliesBlue Variant
+      value: FireFliesBlue
       objectReference: {fileID: 0}
     - target: {fileID: 414484, guid: 72eec0d451241354eaba5dd6caf318ab, type: 3}
       propertyPath: m_RootOrder
