@@ -11,6 +11,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool showSpawner = true;
     [SerializeField] private float spawningRange = 5f;
 
+    [Header("Patrol Settings")]
+    [SerializeField] private GameObject[] patrolSpotsPossible;
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,6 +40,12 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemySpawned = Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, new Vector3(Random.Range(transform.position.x - (spawningRange / 2), transform.position.x + (spawningRange / 2)), Random.Range(transform.position.y - (spawningRange / 2), transform.position.y + (spawningRange / 2)), 1), transform.rotation);
         enemySpawned.transform.SetParent(this.transform);
         enemySpawned.name = possibleSpawning[selectedEntityToSpawn].entityToSpawn.name;
+        Debug.Log(enemySpawned.layer.ToString());
+        if(enemySpawned.layer == 8)
+        {
+            int selectedPatrolPath = Random.Range(0, patrolSpotsPossible.Length);
+            enemySpawned.GetComponent<EnemyTriggerController>().moveSpots = patrolSpotsPossible[selectedPatrolPath];
+        }
     }
 
     private void OnDrawGizmos()

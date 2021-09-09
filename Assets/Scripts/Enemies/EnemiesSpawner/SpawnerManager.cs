@@ -21,6 +21,7 @@ public class SpawnerManager : MonoBehaviour
         {
             EnemySpawner spawner = _spawners[spawnerIndex].GetComponent<EnemySpawner>();
             spawner.SpawnEnemy();
+
         }
     }
 }

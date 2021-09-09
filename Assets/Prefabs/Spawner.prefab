@@ -48,6 +48,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b4ddb176dbee0e46ab1e825ffb73c21, type: 2}
   - {fileID: 11400000, guid: ba435eb85c749c44f8f7fe9a3a2063bf, type: 2}
   showSpawner: 1
+  spawningRange: 5
+  patrolSpotsPossible:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &8545121504199927190
 SpriteRenderer:
   m_ObjectHideFlags: 0

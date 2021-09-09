@@ -17,6 +17,7 @@ public class PatrolBehavior : StateMachineBehaviour
         actualSpot = animator.GetComponentInParent<EnemyTriggerController>().actualSpot;
         patrolSpeed = animator.GetComponentInParent<EnemyTriggerController>().patrolSpeed;
         animator.GetComponentInParent<Pathfinding.AIPath>().maxSpeed = patrolSpeed;
+        animator.GetComponentInParent<Pathfinding.AIDestinationSetter>().target = moveSpots[actualSpot];
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
