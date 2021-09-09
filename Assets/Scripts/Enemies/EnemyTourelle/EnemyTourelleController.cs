@@ -16,6 +16,8 @@ public class EnemyTourelleController : MonoBehaviour
 
     [SerializeField] private LayerMask layerWallMask;
 
+    [SerializeField] private float damagePlayerOnHit = 50f;
+
     private bool isPlayerClipped;
     
 
@@ -55,6 +57,8 @@ public class EnemyTourelleController : MonoBehaviour
             {
                 isPlayerClipped = true;
                 Debug.Log("EnnemyTourelle à dit : Joueur Touché.");
+                PlayerController player = hit.collider.gameObject.GetComponent<PlayerController>();
+                player.Damage(damagePlayerOnHit);
             }
             else if(Vector2.Distance(playerDetection.transform.position, this.transform.position) > 2 && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player") && isPlayerClipped)
             {

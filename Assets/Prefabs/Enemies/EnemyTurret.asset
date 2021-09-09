@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyTurret
   m_EditorClassIdentifier: 
   entityToSpawn: {fileID: 92668372067425755, guid: 9ba2627ed9297c946af18177df72a65f, type: 3}
-  dayOfSpawn: 0
+  dayOfSpawn: 2
