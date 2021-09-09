@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawner Settings")]
     [SerializeField] private List<SpawningEntity> entitiesOfThisSpawner;
     [SerializeField] private bool showSpawner = true;
+    [SerializeField] private float spawningRange = 5f;
 
     private void Awake()
     {
@@ -33,8 +34,14 @@ public class EnemySpawner : MonoBehaviour
 
         int selectedEntityToSpawn = Random.Range(0, possibleSpawning.Count);
 
-        GameObject enemySpawned = Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, transform.position, transform.rotation);
-        enemySpawned.transform.parent = this.transform.parent;
+        GameObject enemySpawned = Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, new Vector3(Random.Range(transform.position.x - (spawningRange / 2), transform.position.x + (spawningRange / 2)), Random.Range(transform.position.y - (spawningRange / 2), transform.position.y + (spawningRange / 2)), 1), transform.rotation);
+        enemySpawned.transform.SetParent(this.transform);
         enemySpawned.name = possibleSpawning[selectedEntityToSpawn].entityToSpawn.name;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector3(spawningRange, spawningRange, 1));
     }
 }

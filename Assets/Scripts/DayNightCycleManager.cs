@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.Universal;
+using PackageCreator.Event;
 
 public class DayNightCycleManager : MonoBehaviour
 {
@@ -20,8 +21,8 @@ public class DayNightCycleManager : MonoBehaviour
     [SerializeField] float numberOfSecondsInOneNight;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onDayStart;
-    [SerializeField] private UnityEvent onNightStart;
+    [SerializeField] private GameEvent onDayStart;
+    [SerializeField] private GameEvent onNightStart;
 
     private int _currentDay = 1;
     private float _currentTime = 0f;
@@ -74,7 +75,7 @@ public class DayNightCycleManager : MonoBehaviour
                 _currentDay++;
                 _changingTime = Time.time + numberOfSecondsInOneDay;
 
-                InvokeRepeating("AugmentLight", 0, 0.1f);
+                InvokeRepeating("AugmentLight", 0, 0.01f);
 
                 _nbOfEnemieForTheDay = 5;
                 if (_currentDay > numberOfEnemieToSpawnPerDay.Count)
@@ -97,14 +98,14 @@ public class DayNightCycleManager : MonoBehaviour
                 InvokeRepeating("SpawnRepeating", timeIntervalBetweenSpawn, timeIntervalBetweenSpawn);
 
                 if (onDayStart != null)
-                    onDayStart.Invoke();
+                    onDayStart.Raise();
             } else if (!_isItDay)
             {
                 _changingTime = Time.time + numberOfSecondsInOneNight;
                 
-                InvokeRepeating("ReduceLight", 0, 0.1f);
+                InvokeRepeating("ReduceLight", 0, 0.01f);
                 if (onNightStart != null)
-                    onNightStart.Invoke();
+                    onNightStart.Raise();
             }
         }
     }
@@ -120,21 +121,23 @@ public class DayNightCycleManager : MonoBehaviour
 
     void ReduceLight()
     {
-        dayLight.intensity -= 0.1f;
+        dayLight.intensity -= 0.01f;
         if (dayLight.intensity <= 0f)
         {
             dayLight.intensity = 0f;
-            CancelInvoke();
+            CancelInvoke("ReduceLight");
+            CancelInvoke("SpawnRepeating");
             _numberEnemieSpawned = 0;
         }
     }
 
     void AugmentLight()
     {
-        dayLight.intensity += 0.1f;
+        dayLight.intensity += 0.01f;
         if (dayLight.intensity >= 1)
         {
             dayLight.intensity = 1f;
+            CancelInvoke("AugmentLight");
         }
     }
 }

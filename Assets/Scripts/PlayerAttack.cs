@@ -7,8 +7,9 @@ public class PlayerAttack : MonoBehaviour
 {
     // Cooldown d'attaque
 
-    public float timeBtwAttack;
+    [ReadOnly] public float timeBtwAttack;
     public float startBtwAttack;
+    [ReadOnly] public bool night;
 
     // Attaque sur les ennemis 
 
@@ -16,22 +17,36 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPos;
     public LayerMask Ennemy;
     public int damage = 50;
+
+    public bool canAnimationWorkWhenNoEnnemiesInRange;
+
+    public Animator attackAnimation;
+
     // Start is called before the first frame update
 
-    [SerializeField] private int playerID = 0;
+    [ReadOnly] [SerializeField] private int playerID = 0;
     [SerializeField] private Player player;
 
     private void Start()
     {
         player = ReInput.players.GetPlayer(playerID);
     }
-    
 
     // Update is called once per frame
     void Update()
     {
-        
-        Attack();
+        if(night)
+            Attack();
+    }
+
+    public void OnDayStart()
+    {
+        night = false;
+    }
+
+    public void OnNightStart()
+    {
+        night = true;
     }
 
     void Attack()
@@ -44,23 +59,24 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] damageEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, Ennemy);
                 print("Grrrrrr !");
 
+                if(damageEnemies.Length > 0 && !canAnimationWorkWhenNoEnnemiesInRange)
+                    attackAnimation.SetTrigger("Attack");
+                else if(canAnimationWorkWhenNoEnnemiesInRange)
+                    attackAnimation.SetTrigger("Attack");
+
                 for (int i = 0; i < damageEnemies.Length; i++)
                 {
                     damageEnemies[i].GetComponent<Enemy>().TakeDamage(damage);
-                }
 
+                }
                 timeBtwAttack = startBtwAttack;
             }
-
-
         }
         else
-        {
             timeBtwAttack -= Time.deltaTime;
-        }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
