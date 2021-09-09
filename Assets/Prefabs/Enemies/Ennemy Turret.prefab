@@ -4962,9 +4962,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa0e6688a5abed439469a75b86bf2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerDash: 5
-  triggerRange: 5
-  stoppingTimeAfterDash: 2
+  powerDash: 15
+  triggerRange: 6
+  stoppingTimeAfterDash: 1
   dashEffect: {fileID: 977549652}
   layerMask:
     serializedVersion: 2
