@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579893747853646196}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.0860555, y: 0.13333845, z: -363.72327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -49,12 +49,11 @@ MonoBehaviour:
   numberOfSecondsInOneDay: 10
   numberOfEnemieToSpawnPerDay: 0500000007000000090000000c0000000f00000014000000
   numberOfSecondsInOneNight: 10
-  onDayStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onNightStart:
-    m_PersistentCalls:
-      m_Calls: []
+  onDayStart: {fileID: 11400000, guid: 34168024238b88d4eb0bacf9990c41b7, type: 2}
+  onNightStart: {fileID: 11400000, guid: f0e5696f8ffd9e14da73daaee6708890, type: 2}
+  dayClip: {fileID: 8300000, guid: 82d1d0bb613dfa049992f3b7c4a99784, type: 3}
+  nightClip: {fileID: 8300000, guid: 2a0535e9ac8833349ba3037796e594ad, type: 3}
+  music: {fileID: 0}
 --- !u!1 &579893748934795250
 GameObject:
   m_ObjectHideFlags: 0

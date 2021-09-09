@@ -401,6 +401,9 @@ MonoBehaviour:
   playerID: 0
   onDeath: {fileID: 0}
   playerLight: {fileID: 1404465127557486895}
+  daySteps: {fileID: 8300000, guid: 1e7f91eafab6cf24b9f2d18cd551c92d, type: 3}
+  nightSteps: {fileID: 8300000, guid: b173220dbf0492f4ca5f392613facbe2, type: 3}
+  footsteps: {fileID: 0}
 --- !u!61 &4094465631971470386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -450,6 +453,7 @@ MonoBehaviour:
   damage: 50
   canAnimationWorkWhenNoEnnemiesInRange: 1
   attackAnimation: {fileID: 836589290}
+  offset: {x: 0, y: 0, z: 0}
   playerID: 0
 --- !u!114 &8524338365711057521
 MonoBehaviour:
@@ -479,21 +483,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1181247271720751144}
-        m_TargetAssemblyTypeName: PlayerExplosionAnimatorController, Assembly-CSharp
-        m_MethodName: OnDayStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4094465631971470385}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnDayStart
+        m_MethodName: changeDayFoosteps
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -531,21 +523,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1181247271720751144}
-        m_TargetAssemblyTypeName: PlayerExplosionAnimatorController, Assembly-CSharp
-        m_MethodName: OnNightStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4094465631971470385}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnNightStart
+        m_MethodName: changeNightFootsteps
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
