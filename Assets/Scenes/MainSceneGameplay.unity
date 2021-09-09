@@ -130,10 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4094465631971470385, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 93637365}
+    - target: {fileID: 4094465631971470384, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4094465631971470398, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -182,21 +182,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4094465631971470399, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094465633153232623, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
---- !u!50 &93637365 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 4094465631971470384, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
-  m_PrefabInstance: {fileID: 93637364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &274537998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1010,14 @@ PrefabInstance:
     - target: {fileID: 4489677616973842112, guid: c32fb5fddbeed93418488286fd52c363, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489677616973842115, guid: c32fb5fddbeed93418488286fd52c363, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489677616973842115, guid: c32fb5fddbeed93418488286fd52c363, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4489677616973842118, guid: c32fb5fddbeed93418488286fd52c363, type: 3}
       propertyPath: m_Name
