@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Player player;
 
     [SerializeField] private GameEvent onDeath;
-    [SerializeField] private Animation deathAnimation;
 
     [SerializeField] private Light2D playerLight;
 
@@ -41,6 +40,9 @@ public class PlayerController : MonoBehaviour
     {
         this.GetComponent<Animator>().SetTrigger("Dead");
         _currentHealth = 0;
+
+        if (onDeath != null)
+            onDeath.Raise();
     }
 
     private void FixedUpdate()
@@ -74,6 +76,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Damage(float damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
+        {
+            PlayerDie();
+        }
+    }
+
     public bool isDead()
     {
         return _currentHealth <= 0;
@@ -94,7 +105,18 @@ public class PlayerController : MonoBehaviour
         playerLight.intensity -= 0.01f;
         if (playerLight.intensity <= 0)
         {
+            CancelInvoke("ReduceLampLight");
             playerLight.intensity = 0;
+        }
+    }
+
+    void AugmentLampLight()
+    {
+        playerLight.intensity += 0.01f;
+        if (playerLight.intensity >= 1)
+        {
+            CancelInvoke("AugmentLampLight");
+            playerLight.intensity = 1;
         }
     }
 }
