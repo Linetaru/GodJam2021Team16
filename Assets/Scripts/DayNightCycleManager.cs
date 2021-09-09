@@ -24,6 +24,13 @@ public class DayNightCycleManager : MonoBehaviour
     [SerializeField] private GameEvent onDayStart;
     [SerializeField] private GameEvent onNightStart;
 
+
+    [SerializeField] private AudioClip dayClip;
+    [SerializeField] private AudioClip nightClip;
+    [SerializeField] private AudioSource music;
+
+
+
     private int _currentDay = 1;
     private float _currentTime = 0f;
     private float _changingTime = 0f;
@@ -72,6 +79,10 @@ public class DayNightCycleManager : MonoBehaviour
             _isItDay = !_isItDay;
             if (_isItDay)
             {
+
+                music.clip = dayClip;
+                music.Play();
+
                 _currentDay++;
                 _changingTime = Time.time + numberOfSecondsInOneDay;
 
@@ -101,6 +112,8 @@ public class DayNightCycleManager : MonoBehaviour
                     onDayStart.Raise();
             } else if (!_isItDay)
             {
+                music.clip = nightClip;
+                music.Play();
                 _changingTime = Time.time + numberOfSecondsInOneNight;
                 
                 InvokeRepeating("ReduceLight", 0, 0.01f);

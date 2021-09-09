@@ -23,11 +23,18 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Light2D playerLight;
 
+    [SerializeField] private AudioClip daySteps;
+    [SerializeField] private AudioClip nightSteps;
+    [SerializeField] private AudioSource footsteps;
+
+    private AudioClip lastAudio; 
+
 
     private float _currentHealth;
 
     private void Start()
     {
+        footsteps.clip = daySteps;
         player = ReInput.players.GetPlayer(playerID);
         _currentHealth = playerMaxHealth;
     }
@@ -57,11 +64,13 @@ public class PlayerController : MonoBehaviour
 
             if (movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
             {
+                footsteps.Play();
                 this.GetComponent<Animator>().SetBool("isWalking", true);
                 this.GetComponent<Animator>().SetBool("isIdle", false);
             }
             else if (movement == Vector3.zero && this.GetComponent<Animator>().GetBool("isWalking"))
             {
+                footsteps.Stop();
                 this.GetComponent<Animator>().SetBool("isIdle", true);
                 this.GetComponent<Animator>().SetBool("isWalking", false);
             }
@@ -99,6 +108,21 @@ public class PlayerController : MonoBehaviour
     public void OnNightStart()
     {
         InvokeRepeating("AugmentLampLight", 0, 0.01f);
+    }
+
+    public void changeDayFoosteps()
+    {
+        footsteps.Stop();
+        footsteps.clip = daySteps;
+        footsteps.Play();
+        
+    }
+
+    public void changeNightFootsteps()
+    {
+        footsteps.Stop();
+        footsteps.clip = nightSteps;
+        footsteps.Play();
     }
 
     void ReduceLampLight()
