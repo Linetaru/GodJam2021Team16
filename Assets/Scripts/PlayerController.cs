@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDie()
     {
         this.GetComponent<Animator>().SetTrigger("Dead");
+        _currentHealth = 0;
     }
 
     private void FixedUpdate()
@@ -51,31 +52,25 @@ public class PlayerController : MonoBehaviour
             if (movement.sqrMagnitude > 1.0f) movement.Normalize();
             transform.position += movement * Time.deltaTime * moveSpeed;
 
-        Vector3 movement = new Vector3(-player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
-        if(movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
-        {
-            this.GetComponent<Animator>().SetBool("isWalking", true);
-            this.GetComponent<Animator>().SetBool("isIdle", false);
-        }
-        else if(movement == Vector3.zero && this.GetComponent<Animator>().GetBool("isWalking"))
-        {
-
-            this.GetComponent<Animator>().SetBool("isIdle", true);
-            this.GetComponent<Animator>().SetBool("isWalking", false);
-        }
-        if (movement.sqrMagnitude > 1.0f) movement.Normalize();
-        transform.position += movement * Time.deltaTime * moveSpeed;
-
-            Vector3 characterScale = transform.localScale;
-            if (player.GetAxis("HorizontalMove") > 0)
+            if (movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
             {
-                characterScale.x = -7;
+                this.GetComponent<Animator>().SetBool("isWalking", true);
+                this.GetComponent<Animator>().SetBool("isIdle", false);
+            }
+            else if (movement == Vector3.zero && this.GetComponent<Animator>().GetBool("isWalking"))
+            {
+                this.GetComponent<Animator>().SetBool("isIdle", true);
+                this.GetComponent<Animator>().SetBool("isWalking", false);
             }
 
-        Quaternion characterScale = transform.rotation;
-        if(player.GetAxis("HorizontalMove") > 0)
-        {
-            characterScale.y = 180;
+            Quaternion characterScale = transform.rotation;
+            if (player.GetAxis("HorizontalMove") < 0)
+                characterScale.y = 0;
+
+            if (player.GetAxis("HorizontalMove") > 0)
+                characterScale.y = 180;
+
+            transform.rotation = characterScale;
         }
     }
 
@@ -99,10 +94,7 @@ public class PlayerController : MonoBehaviour
         playerLight.intensity -= 0.01f;
         if (playerLight.intensity <= 0)
         {
-            characterScale.y = 0;
+            playerLight.intensity = 0;
         }
-    }
-
-        transform.rotation = characterScale;
     }
 }

@@ -322,12 +322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895a871497dd08942b66a7307a7bfec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMaxHealth: 1
   moveSpeed: 20
   rb: {fileID: 4094465631971470384}
   playerID: 0
   onDeath: {fileID: 0}
   deathAnimation: {fileID: 0}
-  playerLight: {fileID: 6438107555624217593}
+  playerLight: {fileID: 0}
 --- !u!61 &4094465631971470386
 BoxCollider2D:
   m_ObjectHideFlags: 0

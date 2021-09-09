@@ -31,16 +31,12 @@ public class PlayerAttack : MonoBehaviour
     {
         player = ReInput.players.GetPlayer(playerID);
     }
-    
 
     // Update is called once per frame
     void Update()
     {
-        if(night == true)
-        {
+        if(night)
             Attack();
-        }
-        
     }
 
     public void OnDayStart()
@@ -73,16 +69,11 @@ public class PlayerAttack : MonoBehaviour
                     damageEnemies[i].GetComponent<Enemy>().TakeDamage(damage);
 
                 }
-
                 timeBtwAttack = startBtwAttack;
             }
-
-
         }
         else
-        {
             timeBtwAttack -= Time.deltaTime;
-        }
     }
 
     void OnDrawGizmos()
