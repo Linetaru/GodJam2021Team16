@@ -1084,6 +1084,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DayNightManager
       objectReference: {fileID: 0}
+    - target: {fileID: 579893747853646197, guid: 5827c3068079ebe4b99072fe144bb2e4, type: 3}
+      propertyPath: onDayStart
+      value: 
+      objectReference: {fileID: 11400000, guid: 34168024238b88d4eb0bacf9990c41b7, type: 2}
+    - target: {fileID: 579893747853646197, guid: 5827c3068079ebe4b99072fe144bb2e4, type: 3}
+      propertyPath: onNightStart
+      value: 
+      objectReference: {fileID: 11400000, guid: f0e5696f8ffd9e14da73daaee6708890, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5827c3068079ebe4b99072fe144bb2e4, type: 3}
 --- !u!1001 &8545121504199927188
