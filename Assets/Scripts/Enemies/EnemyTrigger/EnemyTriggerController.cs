@@ -36,6 +36,11 @@ public class EnemyTriggerController : MonoBehaviour
     private float actualRunningTime;
 
     private DayNightCycleManager dayNightCycle;
+
+    [SerializeField] private float damagePlayerOnHit = 50f;
+
+    private bool isPlayerClipped;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,15 +92,24 @@ public class EnemyTriggerController : MonoBehaviour
         {
             if (!(playerDetection is null))
             {
-                    if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
-                    {
-                        enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
-                        transform.GetComponent<Animator>().SetBool("isRunning", false);
-                        transform.GetComponent<Animator>().SetBool("isAvoiding", false);
-                        transform.GetComponent<Animator>().SetBool("isPatrolling", false);
-                        transform.GetComponent<Animator>().SetBool("isChasing", true);
-                    }
-
+                if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
+                {
+                    enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
+                    transform.GetComponent<Animator>().SetBool("isRunning", false);
+                    transform.GetComponent<Animator>().SetBool("isAvoiding", false);
+                    transform.GetComponent<Animator>().SetBool("isPatrolling", false);
+                    transform.GetComponent<Animator>().SetBool("isChasing", true);
+                }
+                if (Vector2.Distance(playerDetection.transform.position, transform.position) < 2 && !isPlayerClipped)
+                {
+                    isPlayerClipped = true;
+                    PlayerController player = playerDetection.gameObject.GetComponent<PlayerController>();
+                    player.Damage(damagePlayerOnHit);
+                }
+                else if (Vector2.Distance(playerDetection.transform.position, this.transform.position) > 2)
+                {
+                    isPlayerClipped = false;
+                }
             }
             else
             {

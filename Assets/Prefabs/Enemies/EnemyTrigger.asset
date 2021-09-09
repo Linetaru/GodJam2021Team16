@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyTrigger
   m_EditorClassIdentifier: 
   entityToSpawn: {fileID: 6205519535657252202, guid: 0c4b93017d58e5a45a11cb6ab67c02d7, type: 3}
-  dayOfSpawn: 2
+  dayOfSpawn: 0
