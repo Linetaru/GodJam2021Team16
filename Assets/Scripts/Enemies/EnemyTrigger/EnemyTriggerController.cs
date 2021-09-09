@@ -35,7 +35,7 @@ public class EnemyTriggerController : MonoBehaviour
     private Transform playerPos;
     private float actualRunningTime;
 
-    [SerializeField] private DayNightCycleManager dayNightCycle;
+    private DayNightCycleManager dayNightCycle;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +44,7 @@ public class EnemyTriggerController : MonoBehaviour
         enemyAnimator.SetFloat("idleDuration", stoppingTimeAfterChase);
 
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        dayNightCycle = DayNightCycleManager.current;
 
     }
 

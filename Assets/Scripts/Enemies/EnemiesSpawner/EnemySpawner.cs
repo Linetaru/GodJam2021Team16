@@ -33,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
 
         int selectedEntityToSpawn = Random.Range(0, possibleSpawning.Count);
 
-        Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, transform.position, transform.rotation);
+        GameObject enemySpawned = Instantiate(possibleSpawning[selectedEntityToSpawn].entityToSpawn, transform.position, transform.rotation);
+        enemySpawned.transform.parent = this.transform.parent;
+        enemySpawned.name = possibleSpawning[selectedEntityToSpawn].entityToSpawn.name;
     }
 }

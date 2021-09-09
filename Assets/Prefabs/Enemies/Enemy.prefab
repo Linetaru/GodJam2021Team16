@@ -133,7 +133,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpots: {fileID: 0}
+  moveSpots: {fileID: 4710172064194015867, guid: c104a8dbb18e6f049a98d2f72e9ee90e, type: 3}
   actualSpot: 0
 --- !u!50 &464470748
 Rigidbody2D:

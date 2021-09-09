@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 7f;
 
-    public Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private int playerID = 0;
     [SerializeField] private Player player;
