@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4094465631971470385}
   - component: {fileID: 4094465631971470386}
   - component: {fileID: 4094465631971470389}
+  - component: {fileID: 8524338365711057521}
+  - component: {fileID: 5861212826654613227}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -170,6 +172,38 @@ MonoBehaviour:
     m_Bits: 256
   damage: 50
   playerID: 0
+--- !u!114 &8524338365711057521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094465631971470399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934b57a537db8104fb8c234a7dd159af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 34168024238b88d4eb0bacf9990c41b7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5861212826654613227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094465631971470399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934b57a537db8104fb8c234a7dd159af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f0e5696f8ffd9e14da73daaee6708890, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4094465633153232623
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float timeBtwAttack;
     public float startBtwAttack;
+    public bool night;
 
     // Attaque sur les ennemis 
 
@@ -16,6 +17,8 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPos;
     public LayerMask Ennemy;
     public int damage = 50;
+    
+    
     // Start is called before the first frame update
 
     [SerializeField] private int playerID = 0;
@@ -30,8 +33,21 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(night == true)
+        {
+            Attack();
+        }
         
-        Attack();
+    }
+
+    public void OnDayStart()
+    {
+        night = false;
+    }
+
+    public void OnNightStart()
+    {
+        night = true;
     }
 
     void Attack()
