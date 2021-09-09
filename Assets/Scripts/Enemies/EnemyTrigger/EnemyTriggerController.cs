@@ -34,6 +34,8 @@ public class EnemyTriggerController : MonoBehaviour
 
     private Transform playerPos;
     private float actualRunningTime;
+
+    [SerializeField] private DayNightCycleManager dayNightCycle;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +54,7 @@ public class EnemyTriggerController : MonoBehaviour
 
         
         Collider2D playerDetection = Physics2D.OverlapCircle(transform.position, triggerRange, layerMask);
-        if (true)
+        if (!dayNightCycle.isDay())
         {
             transform.GetComponent<Animator>().SetBool("isPatrolling", false);
             transform.GetComponent<Animator>().SetBool("isChasing", false);
@@ -79,7 +81,7 @@ public class EnemyTriggerController : MonoBehaviour
                 
             }
         }
-        else if (false)
+        else if (dayNightCycle.isDay())
         {
             if (!(playerDetection is null))
             {
