@@ -100,13 +100,13 @@ public class EnemyTriggerController : MonoBehaviour
                     transform.GetComponent<Animator>().SetBool("isPatrolling", false);
                     transform.GetComponent<Animator>().SetBool("isChasing", true);
                 }
-                if (Vector2.Distance(playerDetection.transform.position, transform.position) < 2 && !isPlayerClipped)
+                if (Vector2.Distance(playerDetection.GetComponentInParent<Transform>().position, transform.position) < 2 && !isPlayerClipped)
                 {
                     isPlayerClipped = true;
-                    PlayerController player = playerDetection.gameObject.GetComponent<PlayerController>();
+                    PlayerController player = playerDetection.GetComponentInParent<Transform>().gameObject.GetComponent<PlayerController>();
                     player.Damage(damagePlayerOnHit);
                 }
-                else if (Vector2.Distance(playerDetection.transform.position, this.transform.position) > 2)
+                else if (Vector2.Distance(playerDetection.GetComponentInParent<Transform>().position, this.transform.position) > 2)
                 {
                     isPlayerClipped = false;
                 }

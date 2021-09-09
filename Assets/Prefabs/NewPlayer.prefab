@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4800936196220428465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 74.2743, y: -94.31476, z: 182.14757}
+  m_LocalPosition: {x: 74.2743, y: -94.31476, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8823163841907061546}
@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4800936197454586465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71.264305, y: -94.03476, z: 182.14757}
+  m_LocalPosition: {x: 71.264305, y: -94.03476, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8823163840460325565}
@@ -233,6 +233,9 @@ MonoBehaviour:
   playerID: 0
   onDeath: {fileID: 0}
   playerLight: {fileID: 8823163841808633487}
+  daySteps: {fileID: 8300000, guid: 1e7f91eafab6cf24b9f2d18cd551c92d, type: 3}
+  nightSteps: {fileID: 8300000, guid: b173220dbf0492f4ca5f392613facbe2, type: 3}
+  footsteps: {fileID: 0}
 --- !u!61 &4800936197454586476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -336,6 +339,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4800936197454586479}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: changeDayFoosteps
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3108920561810149557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +394,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4800936197454586479}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnNightStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4800936197454586479}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: changeNightFootsteps
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -532,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8823163840711741862}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NewPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
