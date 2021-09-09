@@ -62,6 +62,7 @@ public class EnemyTriggerController : MonoBehaviour
             if (!(playerDetection is null) && !enemyAnimator.GetBool("mustIdle")) {
 
                 actualRunningTime = runningDuration;
+
                 enemyAnimator.SetFloat("actualSpeed", runSpeed);
 
                 
@@ -88,6 +89,8 @@ public class EnemyTriggerController : MonoBehaviour
                     if (!transform.GetComponent<Animator>().GetBool("isChasing") && !enemyAnimator.GetBool("mustIdle"))
                     {
                         enemyAnimator.SetFloat("actualSpeed", chaseSpeed);
+                        transform.GetComponent<Animator>().SetBool("isRunning", false);
+                        transform.GetComponent<Animator>().SetBool("isAvoiding", false);
                         transform.GetComponent<Animator>().SetBool("isPatrolling", false);
                         transform.GetComponent<Animator>().SetBool("isChasing", true);
                     }
@@ -97,6 +100,8 @@ public class EnemyTriggerController : MonoBehaviour
             {
                 enemyAnimator.SetFloat("actualSpeed", patrolSpeed);
                 transform.GetComponent<Animator>().SetBool("isPatrolling", true);
+                transform.GetComponent<Animator>().SetBool("isRunning", false);
+                transform.GetComponent<Animator>().SetBool("isAvoiding", false);
                 transform.GetComponent<Animator>().SetBool("isChasing", false);
             }
         }
