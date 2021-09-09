@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4094465631971470389, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
+      propertyPath: Ennemy.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4094465631971470398, guid: 296f2d3620e3b004d92ba5936c486f42, type: 3}
       propertyPath: m_RootOrder
       value: 10
