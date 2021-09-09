@@ -75,7 +75,7 @@ public class DayNightCycleManager : MonoBehaviour
                 _currentDay++;
                 _changingTime = Time.time + numberOfSecondsInOneDay;
 
-                InvokeRepeating("AugmentLight", 0, 0.1f);
+                InvokeRepeating("AugmentLight", 0, 0.01f);
 
                 _nbOfEnemieForTheDay = 5;
                 if (_currentDay > numberOfEnemieToSpawnPerDay.Count)
@@ -103,7 +103,7 @@ public class DayNightCycleManager : MonoBehaviour
             {
                 _changingTime = Time.time + numberOfSecondsInOneNight;
                 
-                InvokeRepeating("ReduceLight", 0, 0.1f);
+                InvokeRepeating("ReduceLight", 0, 0.01f);
                 if (onNightStart != null)
                     onNightStart.Raise();
             }
@@ -121,21 +121,23 @@ public class DayNightCycleManager : MonoBehaviour
 
     void ReduceLight()
     {
-        dayLight.intensity -= 0.1f;
+        dayLight.intensity -= 0.01f;
         if (dayLight.intensity <= 0f)
         {
             dayLight.intensity = 0f;
-            CancelInvoke();
+            CancelInvoke("ReduceLight");
+            CancelInvoke("SpawnRepeating");
             _numberEnemieSpawned = 0;
         }
     }
 
     void AugmentLight()
     {
-        dayLight.intensity += 0.1f;
+        dayLight.intensity += 0.01f;
         if (dayLight.intensity >= 1)
         {
             dayLight.intensity = 1f;
+            CancelInvoke("AugmentLight");
         }
     }
 }
