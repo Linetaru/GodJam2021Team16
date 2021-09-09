@@ -22,6 +22,8 @@ public class PlayerAttack : MonoBehaviour
 
     public Animator attackAnimation;
 
+    public Vector3 offset;
+
     // Start is called before the first frame update
 
     [ReadOnly] [SerializeField] private int playerID = 0;
@@ -56,6 +58,11 @@ public class PlayerAttack : MonoBehaviour
         {
             if (player.GetButton("Attack"))
             {
+                if(this.transform.eulerAngles == new Vector3(0, 180, 0 ))
+                    attackPos.position = this.transform.position - offset;
+                else
+                    attackPos.position = this.transform.position + offset;
+
                 Collider2D[] damageEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, Ennemy);
                 print("Grrrrrr !");
 

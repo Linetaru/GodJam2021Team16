@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Light2D playerLight;
 
+
     private float _currentHealth;
 
     private void Start()
