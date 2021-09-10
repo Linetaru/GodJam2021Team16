@@ -2623,6 +2623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427759907}
   - component: {fileID: 427759908}
+  - component: {fileID: 427759909}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -2698,13 +2699,41 @@ MonoBehaviour:
   m_FillRect: {fileID: 1154975381}
   m_HandleRect: {fileID: 1353656978}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 427759909}
+        m_TargetAssemblyTypeName: PackageCreator.Sounds.SetVolume, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &427759909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427759906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4843aabeb47dc46812c89b359de4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: fe4d2b4b22e7a2148be13e2d39e9ca2f, type: 2}
+  slider: {fileID: 427759908}
+  textObject: {fileID: 0}
+  _nameExposedParameter: MusicMixer
 --- !u!1 &432451601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,7 +4229,7 @@ AudioSource:
   m_GameObject: {fileID: 765987939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fe4d2b4b22e7a2148be13e2d39e9ca2f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1bc72cb7f4fcd4f4e868540ba4a69c14, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -4296,7 +4325,7 @@ AudioSource:
   m_GameObject: {fileID: 765987939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 30de8aa99bfb7f84ba60c0a4dba09cf3, type: 2}
   m_audioClip: {fileID: 8300000, guid: 579c15efb07aecf41bf4fa608a462d5f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.15
@@ -8036,6 +8065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1412258170}
   - component: {fileID: 1412258171}
+  - component: {fileID: 1412258172}
   m_Layer: 5
   m_Name: Slider (1)
   m_TagString: Untagged
@@ -8111,13 +8141,41 @@ MonoBehaviour:
   m_FillRect: {fileID: 1591606779}
   m_HandleRect: {fileID: 94216219}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1412258172}
+        m_TargetAssemblyTypeName: PackageCreator.Sounds.SetVolume, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1412258172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412258169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4843aabeb47dc46812c89b359de4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 30de8aa99bfb7f84ba60c0a4dba09cf3, type: 2}
+  slider: {fileID: 1412258171}
+  textObject: {fileID: 0}
+  _nameExposedParameter: SfxMixer
 --- !u!1 &1423132439
 GameObject:
   m_ObjectHideFlags: 0

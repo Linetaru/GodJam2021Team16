@@ -28,7 +28,7 @@ namespace PackageCreator.Sounds
         {
             //value save data
             slider.value = PlayerPrefs.GetFloat(_nameExposedParameter, 1f);
-            UpdateTextObject();
+            //UpdateTextObject();
         }
 
         //Function to change audiomixer volume with value changed of slider
@@ -39,15 +39,15 @@ namespace PackageCreator.Sounds
             mixer.SetFloat(_nameExposedParameter, Mathf.Log10(sliderValue) * 20);
             //Save Data
             PlayerPrefs.SetFloat(_nameExposedParameter, sliderValue);
-            UpdateTextObject();
+            //UpdateTextObject();
         }
 
         //Change text for percent
-        public void UpdateTextObject()
-        {
-            //percent of slider value
-            textObject.text = Mathf.Round(slider.value * 100) + "%";
-        }
+        //public void UpdateTextObject()
+        //{
+        //    //percent of slider value
+        //    textObject.text = Mathf.Round(slider.value * 100) + "%";
+        //}
 
         // ------------------------------------------------------------------------------------------------------------------------------------------- //
     }
