@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.Universal;
 using PackageCreator.Event;
+using UnityEngine.UI;
+using TMPro;
 
 public class DayNightCycleManager : MonoBehaviour
 {
@@ -29,7 +31,9 @@ public class DayNightCycleManager : MonoBehaviour
     [SerializeField] private AudioClip nightClip;
     [SerializeField] private AudioSource music;
 
+    [SerializeField] private float changingTimePrevention = 2f;
 
+    [SerializeField] private TextMeshProUGUI nightComing;
 
     private int _currentDay = 1;
     private float _currentTime = 0f;
@@ -39,6 +43,8 @@ public class DayNightCycleManager : MonoBehaviour
     private int _lastValidDay = 0;
     private SpawnerManager _spawnerManager;
     private int _nbOfEnemieForTheDay;
+
+    private bool isDecedingLight;
 
     private bool playerIsDEAD;
 
@@ -83,6 +89,13 @@ public class DayNightCycleManager : MonoBehaviour
         if (playerIsDEAD) return;
 
         _currentTime = Time.time;
+        if (_currentTime >= _changingTime - changingTimePrevention)
+        {
+            nightComing.gameObject.SetActive(true);
+            Invoke("StopNightComing", 2);
+            isDecedingLight = true;
+            InvokeRepeating("JitterLight", 0, 0.01f);
+        }
         if (_currentTime >= _changingTime)
         {
             _isItDay = !_isItDay;
@@ -124,7 +137,7 @@ public class DayNightCycleManager : MonoBehaviour
                 music.clip = nightClip;
                 music.Play();
                 _changingTime = Time.time + numberOfSecondsInOneNight;
-                
+                CancelInvoke("JitterLight");
                 InvokeRepeating("ReduceLight", 0, 0.01f);
                 if (onNightStart != null)
                     onNightStart.Raise();
@@ -160,6 +173,28 @@ public class DayNightCycleManager : MonoBehaviour
         {
             dayLight.intensity = 1f;
             CancelInvoke("AugmentLight");
+        }
+    }
+
+    void StopNightComing()
+    {
+        nightComing.gameObject.SetActive(false);
+    }
+
+    void JitterLight()
+    {
+        
+        if (dayLight.intensity > 0.5 && isDecedingLight)
+        {
+            dayLight.intensity -= 0.01f;
+            isDecedingLight = false;
+        } else
+        {
+            dayLight.intensity += 0.01f;
+        }
+        if (dayLight.intensity >= 1)
+        {
+            isDecedingLight = true;
         }
     }
 }
