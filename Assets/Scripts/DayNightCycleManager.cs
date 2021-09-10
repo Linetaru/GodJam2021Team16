@@ -40,6 +40,8 @@ public class DayNightCycleManager : MonoBehaviour
     private SpawnerManager _spawnerManager;
     private int _nbOfEnemieForTheDay;
 
+    private bool playerIsDEAD;
+
     private void Awake()
     {
         current = this;
@@ -71,8 +73,15 @@ public class DayNightCycleManager : MonoBehaviour
         return _isItDay;
     }
 
+    public void isDead()
+    {
+        playerIsDEAD = true;
+    }
+
     void Update()
     {
+        if (playerIsDEAD) return;
+
         _currentTime = Time.time;
         if (_currentTime >= _changingTime)
         {
