@@ -356,12 +356,11 @@ public class MenuManager : MonoBehaviour
                         if (sliderChoosen == 1)
                         {
                             sfxSlider.value = Mathf.Clamp(sfxSlider.value + 0.1f, 0.001f, 1);
-                            sfxSliderPourcentText.text = ((int)sfxSlider.value * 100).ToString();
                         }
                         else if (sliderChoosen == 0)
                         {
                             musicSlider.value = Mathf.Clamp(musicSlider.value + 0.1f, 0.001f, 1);
-                            musicSliderPourcentText.text = ((int)musicSlider.value * 100).ToString();
+
                         }
 
                         audioUIValidate.Play();
@@ -372,12 +371,11 @@ public class MenuManager : MonoBehaviour
                         if (sliderChoosen == 1)
                         {
                             sfxSlider.value = Mathf.Clamp(sfxSlider.value - 0.1f, 0.001f, 1);
-                            sfxSliderPourcentText.text = ((int)sfxSlider.value * 100).ToString();
                         }
                         else if (sliderChoosen == 0)
                         {
                             musicSlider.value = Mathf.Clamp(musicSlider.value - 0.1f, 0.001f, 1);
-                            musicSliderPourcentText.text = ((int)musicSlider.value * 100).ToString();
+
                         }
 
                         audioUIValidate.Play();
