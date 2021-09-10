@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TypingMessage
       objectReference: {fileID: 0}
+    - target: {fileID: 156936, guid: cf43a7dd258b42b41a217fc2f452aeda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 452070, guid: cf43a7dd258b42b41a217fc2f452aeda, type: 3}
       propertyPath: m_RootOrder
       value: 0
