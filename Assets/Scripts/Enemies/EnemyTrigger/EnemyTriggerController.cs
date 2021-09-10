@@ -42,6 +42,9 @@ public class EnemyTriggerController : MonoBehaviour
     [SerializeField] private GameObject detectPlayerParticle;
     [SerializeField] private GameObject fleePlayerParticle;
 
+    [SerializeField] private GameObject ghostEye;
+
+
     private bool isPlayerClipped;
 
     // Start is called before the first frame update
@@ -78,7 +81,7 @@ public class EnemyTriggerController : MonoBehaviour
                 transform.GetComponent<Animator>().SetBool("isRunning", false);
                 transform.GetComponent<Animator>().SetBool("isAvoiding", true);
 
-                GameObject particle = Instantiate(fleePlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                GameObject particle = Instantiate(fleePlayerParticle, new Vector3(transform.position.x, transform.position.y + 3.2f, 2), transform.rotation);
                 particle.transform.SetParent(transform);
                 Destroy(particle, 5);
             }
@@ -105,7 +108,7 @@ public class EnemyTriggerController : MonoBehaviour
                     transform.GetComponent<Animator>().SetBool("isAvoiding", false);
                     transform.GetComponent<Animator>().SetBool("isPatrolling", false);
                     transform.GetComponent<Animator>().SetBool("isChasing", true);
-                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 3.2f, 2), transform.rotation);
                     particle.transform.SetParent(transform);
                     Destroy(particle, 5);
                 }
@@ -137,5 +140,15 @@ public class EnemyTriggerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, triggerRange);
+    }
+
+    public void OnDayStart()
+    {
+        ghostEye.SetActive(false);
+    }
+
+    public void OnNightStart()
+    {
+        ghostEye.SetActive(true);
     }
 }
