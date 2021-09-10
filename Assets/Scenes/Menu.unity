@@ -4199,9 +4199,9 @@ MonoBehaviour:
   musicSlider: {fileID: 427759908}
   sfxSlider: {fileID: 1412258171}
   musicSliderText: {fileID: 1906132082}
-  musicSliderPourcentText: {fileID: 90250424}
+  musicSliderPourcentText: {fileID: 0}
   sfxSliderText: {fileID: 1367242010}
-  sfxSliderPourcentText: {fileID: 1391743647}
+  sfxSliderPourcentText: {fileID: 0}
   PanelCredits: {fileID: 639473734}
   playerCursorCredit: {fileID: 119763324}
   goingInCredit: {fileID: 934587700}
