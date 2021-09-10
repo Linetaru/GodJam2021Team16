@@ -62,12 +62,15 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 movement = new Vector3(-player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
             if (movement.sqrMagnitude > 1.0f) movement.Normalize();
-            transform.position += movement * Time.deltaTime * moveSpeed;
+            {
+                transform.position += movement * Time.deltaTime * moveSpeed;
+                if (this.GetComponent<Animator>().GetBool("isWalking"))
+                    dustParticle.Play();
+            }
 
             if (movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
             {
                 footsteps.Play();
-                dustParticle.Play();
                 this.GetComponent<Animator>().SetBool("isWalking", true);
                 this.GetComponent<Animator>().SetBool("isIdle", false);
             }
