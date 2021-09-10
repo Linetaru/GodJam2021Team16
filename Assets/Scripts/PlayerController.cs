@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDie()
     {
-        this.GetComponent<Animator>().SetTrigger("Dead");
+        this.GetComponent<Animator>().SetTrigger("Death");
+        print("Player death");
         _currentHealth = 0;
 
         if (onDeath != null)
