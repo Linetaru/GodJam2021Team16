@@ -44,6 +44,7 @@ public class EnemyTriggerController : MonoBehaviour
 
     [SerializeField] private GameObject ghostEye;
 
+    private bool playerDead;
 
     private bool isPlayerClipped;
 
@@ -58,13 +59,18 @@ public class EnemyTriggerController : MonoBehaviour
         dayNightCycle = DayNightCycleManager.current;
 
     }
+    public void PlayerIsDead()
+    {
+        playerDead = true;
+    }
 
     // Update is called once per frame
     void Update()﻿
     {
         // Détection du joueur
 
-        
+        if (playerDead) return;
+
         Collider2D playerDetection = Physics2D.OverlapCircle(transform.position, triggerRange, layerMask);
         if (!dayNightCycle.isDay())
         {

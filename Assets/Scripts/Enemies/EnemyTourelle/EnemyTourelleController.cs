@@ -23,7 +23,8 @@ public class EnemyTourelleController : MonoBehaviour
     [SerializeField] private GameObject ghostEye;
 
     private bool isPlayerClipped;
-    
+
+    private bool playerDead;
 
     [ReadOnly] public bool isInFear;
 
@@ -35,10 +36,17 @@ public class EnemyTourelleController : MonoBehaviour
         enemyAnimator = transform.GetComponent<Animator>();
     }
 
+    public void PlayerIsDead()
+    {
+        playerDead = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (isInFear) return;
+
+        if (playerDead) return;
 
         int layerMaskRay = 1 << LayerMask.NameToLayer("EnnemyTurret");
         layerMaskRay = ~layerMaskRay;

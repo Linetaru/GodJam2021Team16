@@ -51,7 +51,7 @@ public class IdleBehavior : StateMachineBehaviour
         _isParticleSpawned = false;
         GameObject particleInterrogation = Instantiate(interrogationParticle, new Vector3(animator.transform.position.x, animator.transform.position.y + 3.2f, 2), animator.transform.rotation);
         particleInterrogation.transform.SetParent(animator.transform);
-        Destroy(particleInterrogation, 5);
+        Destroy(particleInterrogation, 3);
     }
 
 }

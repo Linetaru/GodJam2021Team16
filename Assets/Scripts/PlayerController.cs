@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         footsteps.clip = daySteps;
         player = ReInput.players.GetPlayer(playerID);
         _currentHealth = playerMaxHealth;
+        this.GetComponent<Animator>().SetBool("isWalking", false);
+        this.GetComponent<Animator>().SetBool("isIdle", true);
     }
 
     // Update is called once per frame
