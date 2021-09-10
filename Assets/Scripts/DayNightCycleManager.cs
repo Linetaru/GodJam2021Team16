@@ -89,7 +89,7 @@ public class DayNightCycleManager : MonoBehaviour
         if (playerIsDEAD) return;
 
         _currentTime = Time.time;
-        if (_currentTime >= _changingTime - changingTimePrevention)
+        if (_isItDay && _currentTime >= _changingTime - changingTimePrevention)
         {
             nightComing.gameObject.SetActive(true);
             Invoke("StopNightComing", 2);
