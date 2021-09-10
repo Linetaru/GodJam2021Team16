@@ -20,6 +20,8 @@ public class EnemyTourelleController : MonoBehaviour
 
     [SerializeField] private GameObject detectPlayerParticle;
 
+    [SerializeField] private GameObject ghostEye;
+
     private bool isPlayerClipped;
     
 
@@ -80,6 +82,8 @@ public class EnemyTourelleController : MonoBehaviour
 
         enemyAnimator.GetComponent<Animator>().SetBool("isInFear", false);
         enemyAnimator.GetComponent<Animator>().SetBool("mustIdle", true);
+
+        ghostEye.SetActive(false);
     }
 
     public void OnNightStarting()
@@ -87,6 +91,8 @@ public class EnemyTourelleController : MonoBehaviour
         isInFear = true;
         enemyAnimator.GetComponent<Animator>().SetBool("isInFear", true);
         enemyAnimator.GetComponent<Animator>().SetBool("isDashing", false);
+
+        ghostEye.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

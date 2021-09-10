@@ -42,6 +42,9 @@ public class EnemyTriggerController : MonoBehaviour
     [SerializeField] private GameObject detectPlayerParticle;
     [SerializeField] private GameObject fleePlayerParticle;
 
+    [SerializeField] private GameObject ghostEye;
+
+
     private bool isPlayerClipped;
 
     // Start is called before the first frame update
@@ -137,5 +140,15 @@ public class EnemyTriggerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, triggerRange);
+    }
+
+    public void OnDayStart()
+    {
+        ghostEye.SetActive(false);
+    }
+
+    public void OnNightStart()
+    {
+        ghostEye.SetActive(true);
     }
 }
