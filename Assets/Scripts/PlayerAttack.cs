@@ -34,6 +34,9 @@ public class PlayerAttack : MonoBehaviour
     //Sound Management
     [SerializeField] private AudioSource attackSound;
 
+    //Screen shake
+    public CameraShake cameraShake;
+
     private void Start()
     {
         player = ReInput.players.GetPlayer(playerID);
@@ -79,6 +82,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (damageEnemies.Length > 0)
                 {
+                    StartCoroutine(cameraShake.Shake(.15f, 1f));
                     attackSound.Play();
                     GameObject particle = Instantiate(attackTouchParticle, attackPos.position, transform.rotation);
                     Destroy(particle, 2);

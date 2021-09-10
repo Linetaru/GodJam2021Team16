@@ -81,7 +81,7 @@ public class EnemyTriggerController : MonoBehaviour
                 transform.GetComponent<Animator>().SetBool("isRunning", false);
                 transform.GetComponent<Animator>().SetBool("isAvoiding", true);
 
-                GameObject particle = Instantiate(fleePlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                GameObject particle = Instantiate(fleePlayerParticle, new Vector3(transform.position.x, transform.position.y + 3.2f, 2), transform.rotation);
                 particle.transform.SetParent(transform);
                 Destroy(particle, 5);
             }
@@ -108,7 +108,7 @@ public class EnemyTriggerController : MonoBehaviour
                     transform.GetComponent<Animator>().SetBool("isAvoiding", false);
                     transform.GetComponent<Animator>().SetBool("isPatrolling", false);
                     transform.GetComponent<Animator>().SetBool("isChasing", true);
-                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 3.2f, 2), transform.rotation);
                     particle.transform.SetParent(transform);
                     Destroy(particle, 5);
                 }

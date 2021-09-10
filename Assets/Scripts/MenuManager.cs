@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
     public GameObject PanelPrincipal;
     public Image playerCursor;
     public RectTransform goingOutPrincipal;
+    public RectTransform goingInCreditPrincipal;
 
     [Header("Panel Options")]
     public GameObject PanelOptions;
@@ -55,13 +56,21 @@ public class MenuManager : MonoBehaviour
 
     [Header("Panel Credits")]
     public GameObject PanelCredits;
+    public Image playerCursorCredit;
+    public RectTransform goingInCredit;
+    public RectTransform goingOutCredit;
 
     private State state = State.PlayButton;
     private StateMenu stateMenu = StateMenu.MenuPrincipal;
+
     private Vector2 pos;
     private Vector2 posOption;
+    private Vector2 posCredit;
+
     private Vector2 posPlayer;
     private Vector2 posPlayerOption;
+    private Vector2 posPlayerCredit;
+
     private bool canCursorMove;
     private float timerForReInput;
 
@@ -117,6 +126,16 @@ public class MenuManager : MonoBehaviour
                         playerCursorOptions.gameObject.GetComponent<Animator>().SetBool("isWalking", true);
                         stateMenu = StateMenu.MenuOptions;
                         musicSliderText.GetComponent<Animator>().SetBool("isPulsing", true);
+                    }
+                    else if (playerCursor.rectTransform.anchoredPosition.x == goingInCreditPrincipal.anchoredPosition.x && isTransition)
+                    {
+                        playerCursor.gameObject.GetComponent<Animator>().SetBool("isWalking", false);
+                        currentTime = 0;
+                        PanelPrincipal.SetActive(false);
+                        PanelCredits.SetActive(true);
+                        playerCursorCredit.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+                        playerCursorCredit.gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+                        stateMenu = StateMenu.MenuCredits;
                     }
                     else if (playerCursor.rectTransform.anchoredPosition.x == pos.x && !isTransition)
                     {
@@ -191,6 +210,33 @@ public class MenuManager : MonoBehaviour
                             break;
 
                         case State.CreditsButton:
+
+                            if (player.GetButtonDown("Validate"))
+                            {
+                                audioUIValidate.Play();
+
+                                posCredit = playerCursorCredit.rectTransform.anchoredPosition;
+                                posPlayerCredit = playerCursorCredit.rectTransform.anchoredPosition;
+                                posCredit.x = goingInCredit.anchoredPosition.x;
+
+                                timerForReInput = 0.3f;
+                                currentTime = 0;
+
+                                canCursorMove = true;
+
+                                pos = playerCursor.rectTransform.anchoredPosition;
+                                posPlayer = playerCursor.rectTransform.anchoredPosition;
+                                pos.x = goingInCreditPrincipal.anchoredPosition.x;
+
+                                buttonImage[(int)state].gameObject.GetComponent<Animator>().SetBool("isPulsing", false);
+
+                                playerCursor.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+
+                                playerCursor.gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+
+                                isTransition = true;
+                            }
+
                             if (player.GetAxis("HorizontalMove") > 0)
                             {
                                 MovingPlayerCursor(1, true);
@@ -309,28 +355,32 @@ public class MenuManager : MonoBehaviour
                     {
                         if (sliderChoosen == 1)
                         {
-                            sfxSlider.value = Mathf.Clamp(sfxSlider.value + 1, 0.001f, 100);
-                            sfxSliderPourcentText.text = ((int)sfxSlider.value).ToString();
+                            sfxSlider.value = Mathf.Clamp(sfxSlider.value + 0.1f, 0.001f, 1);
+                            sfxSliderPourcentText.text = ((int)sfxSlider.value * 100).ToString();
                         }
                         else if (sliderChoosen == 0)
                         {
-                            musicSlider.value = Mathf.Clamp(musicSlider.value + 1, 0.001f, 100);
-                            musicSliderPourcentText.text = ((int)musicSlider.value).ToString();
+                            musicSlider.value = Mathf.Clamp(musicSlider.value + 0.1f, 0.001f, 1);
+                            musicSliderPourcentText.text = ((int)musicSlider.value * 100).ToString();
                         }
+
+                        audioUIValidate.Play();
                         timerContinueSlider = 0.4f;
                     }
                     else if (player.GetAxis("HorizontalMove") > 0)
                     {
                         if (sliderChoosen == 1)
                         {
-                            sfxSlider.value = Mathf.Clamp(sfxSlider.value - 1, 0.001f, 100);
-                            sfxSliderPourcentText.text = ((int)sfxSlider.value).ToString();
+                            sfxSlider.value = Mathf.Clamp(sfxSlider.value - 0.1f, 0.001f, 1);
+                            sfxSliderPourcentText.text = ((int)sfxSlider.value * 100).ToString();
                         }
                         else if (sliderChoosen == 0)
                         {
-                            musicSlider.value = Mathf.Clamp(musicSlider.value - 1, 0.001f, 100);
-                            musicSliderPourcentText.text = ((int)musicSlider.value).ToString();
+                            musicSlider.value = Mathf.Clamp(musicSlider.value - 0.1f, 0.001f, 1);
+                            musicSliderPourcentText.text = ((int)musicSlider.value * 100).ToString();
                         }
+
+                        audioUIValidate.Play();
                         timerContinueSlider = 0.4f;
                     }
                 }
@@ -342,6 +392,48 @@ public class MenuManager : MonoBehaviour
                 break;
 
             case StateMenu.MenuCredits:
+
+                if (canCursorMove)
+                {
+                    currentTime += Time.deltaTime;
+                    normalizedValue = currentTime / 2;
+                    playerCursorCredit.rectTransform.anchoredPosition = Vector2.Lerp(posPlayerCredit, posCredit, normalizedValue);
+                    if (playerCursorCredit.rectTransform.anchoredPosition.x == goingInCredit.anchoredPosition.x && isTransition)
+                    {
+                        playerCursorCredit.gameObject.GetComponent<Animator>().SetBool("isWalking", false);
+                        currentTime = 0;
+                        canCursorMove = false;
+                        isTransition = false;
+                    }
+                    else if (playerCursorCredit.rectTransform.anchoredPosition.x == goingOutCredit.anchoredPosition.x && !isTransition)
+                    {
+                        playerCursorCredit.gameObject.GetComponent<Animator>().SetBool("isWalking", false);
+                        currentTime = 0;
+                        PanelPrincipal.SetActive(true);
+                        PanelCredits.SetActive(false);
+                        stateMenu = StateMenu.MenuPrincipal;
+
+                        pos = goingInCreditPrincipal.anchoredPosition;
+                        posPlayer = goingInCreditPrincipal.anchoredPosition;
+                        pos.x = buttonImage[2].rectTransform.anchoredPosition.x;
+
+                        playerCursor.rectTransform.rotation = Quaternion.Euler(0, 180, 0);
+
+                        playerCursor.gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+                    }
+                }
+
+                if (player.GetButtonDown("Return") && !playerCursorOptions.gameObject.GetComponent<Animator>().GetBool("isWalking"))
+                {
+                    audioUIValidate.Play();
+                    playerCursorCredit.gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+
+                    posCredit = playerCursorCredit.rectTransform.anchoredPosition;
+                    posPlayerCredit = playerCursorCredit.rectTransform.anchoredPosition;
+                    posCredit.x = goingOutCredit.anchoredPosition.x;
+                    canCursorMove = true;
+                    playerCursorCredit.rectTransform.rotation = Quaternion.Euler(0, 180, 0);
+                }
                 break;
         }
 

@@ -185,7 +185,7 @@ MonoBehaviour:
   actualSpeed: 5
   patrolSpeed: 8
   chaseSpeed: 10
-  runSpeed: 7
+  runSpeed: 12
   triggerRange: 12
   chasingDuration: 5
   runningDuration: 5

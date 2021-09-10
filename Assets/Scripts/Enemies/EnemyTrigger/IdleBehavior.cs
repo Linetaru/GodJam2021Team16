@@ -26,7 +26,7 @@ public class IdleBehavior : StateMachineBehaviour
     {
         if (!_isParticleSpawned)
         {
-            particle = Instantiate(searchingParticle, new Vector3(animator.transform.position.x, animator.transform.position.y + 2.5f, 2), animator.transform.rotation);
+            particle = Instantiate(searchingParticle, new Vector3(animator.transform.position.x, animator.transform.position.y + 3.2f, 2), animator.transform.rotation);
             particle.transform.SetParent(animator.transform);
             _isParticleSpawned = true;
         }
@@ -49,7 +49,7 @@ public class IdleBehavior : StateMachineBehaviour
     {
         Destroy(particle);
         _isParticleSpawned = false;
-        GameObject particleInterrogation = Instantiate(interrogationParticle, new Vector3(animator.transform.position.x, animator.transform.position.y + 2.5f, 2), animator.transform.rotation);
+        GameObject particleInterrogation = Instantiate(interrogationParticle, new Vector3(animator.transform.position.x, animator.transform.position.y + 3.2f, 2), animator.transform.rotation);
         particleInterrogation.transform.SetParent(animator.transform);
         Destroy(particleInterrogation, 5);
     }
