@@ -11,7 +11,7 @@ public class CycleDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textDisplay.text =  cycleManager.getCurrentDay().ToString();
+        textDisplay.text =  "J - " + cycleManager.getCurrentDay().ToString();
            
     }
 }
