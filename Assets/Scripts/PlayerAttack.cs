@@ -31,6 +31,9 @@ public class PlayerAttack : MonoBehaviour
     [ReadOnly] [SerializeField] private int playerID = 0;
     [SerializeField] private Player player;
 
+    //Sound Management
+    [SerializeField] private AudioSource attackSound;
+
     private void Start()
     {
         player = ReInput.players.GetPlayer(playerID);
@@ -60,6 +63,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (player.GetButton("Attack"))
             {
+                
                 if(this.transform.eulerAngles == new Vector3(0, 180, 0 ))
                     attackPos.position = this.transform.position - offset;
                 else
@@ -75,6 +79,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (damageEnemies.Length > 0)
                 {
+                    attackSound.Play();
                     GameObject particle = Instantiate(attackTouchParticle, attackPos.position, transform.rotation);
                     Destroy(particle, 2);
                 }

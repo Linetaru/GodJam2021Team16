@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem dustParticle;
 
-    private AudioClip lastAudio; 
+    [SerializeField] private AudioSource characterSound;
 
 
     private float _currentHealth;
@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDie()
     {
-        this.GetComponent<Animator>().SetTrigger("Dead");
+        this.GetComponent<Animator>().SetTrigger("Death");
+        print("Player death");
         _currentHealth = 0;
 
         if (onDeath != null)
@@ -62,12 +63,15 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 movement = new Vector3(-player.GetAxis("HorizontalMove"), player.GetAxis("VerticalMove"), 0f);
             if (movement.sqrMagnitude > 1.0f) movement.Normalize();
-            transform.position += movement * Time.deltaTime * moveSpeed;
+            {
+                transform.position += movement * Time.deltaTime * moveSpeed;
+                if (this.GetComponent<Animator>().GetBool("isWalking"))
+                    dustParticle.Play();
+            }
 
             if (movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
             {
                 footsteps.Play();
-                dustParticle.Play();
                 this.GetComponent<Animator>().SetBool("isWalking", true);
                 this.GetComponent<Animator>().SetBool("isIdle", false);
             }
@@ -123,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void changeNightFootsteps()
     {
+        characterSound.Play();
         footsteps.Stop();
         footsteps.clip = nightSteps;
         footsteps.Play();
