@@ -79,6 +79,9 @@ public class MenuManager : MonoBehaviour
     {
         player = ReInput.players.GetPlayer(0);
         buttonImage[(int)state].gameObject.GetComponent<Animator>().SetBool("isPulsing", true);
+        PanelOptions.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void MovingPlayerCursor(int id, bool flip)
@@ -251,6 +254,8 @@ public class MenuManager : MonoBehaviour
 
                             if (player.GetButtonDown("Validate"))
                             {
+                                Cursor.visible = true;
+                                Cursor.lockState = CursorLockMode.None;
                                 audioUIValidate.Play();
                                 Application.Quit();
                             }

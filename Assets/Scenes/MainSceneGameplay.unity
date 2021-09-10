@@ -4553,6 +4553,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &982489503
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7039264893616312424, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_Name
+      value: Spawner (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 38.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142490983664603851, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377297571087352377, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: patrolSpotsPossible.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377297571087352377, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: patrolSpotsPossible.Array.data[0]
+      value: 
+      objectReference: {fileID: 1259463226}
+    - target: {fileID: 7377297571087352377, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: patrolSpotsPossible.Array.data[1]
+      value: 
+      objectReference: {fileID: 670038177}
+    - target: {fileID: 7377297571087352377, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: patrolSpotsPossible.Array.data[2]
+      value: 
+      objectReference: {fileID: 1923372882}
+    - target: {fileID: 8545121504199927190, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545121504199927190, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 838c9f119607a5f45b6bfad940bd4fbd, type: 3}
 --- !u!1 &1052167481
 GameObject:
   m_ObjectHideFlags: 0
@@ -7827,7 +7908,19 @@ MonoBehaviour:
   gameEvent: {fileID: 11400000, guid: 15770e6d4f1dc4a46a80333d52ff3fca, type: 2}
   response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1351077859}
+        m_TargetAssemblyTypeName: DayNightCycleManager, Assembly-CSharp
+        m_MethodName: isDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1835869676
 GameObject:
   m_ObjectHideFlags: 0
@@ -14884,6 +14977,10 @@ PrefabInstance:
       propertyPath: characterSound
       value: 
       objectReference: {fileID: 1708759451}
+    - target: {fileID: 6928557914867900475, guid: 3c52286f3f85c6646bd88794ace62ee6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8823163840711741862, guid: 3c52286f3f85c6646bd88794ace62ee6, type: 3}
       propertyPath: m_RootOrder
       value: 6
