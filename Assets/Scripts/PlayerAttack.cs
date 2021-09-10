@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     public float startBtwAttack;
     [ReadOnly] public bool night;
 
+    [SerializeField] private GameObject attackTouchParticle;
+
     // Attaque sur les ennemis 
 
     public float attackRange;
@@ -70,6 +72,12 @@ public class PlayerAttack : MonoBehaviour
                     attackAnimation.SetTrigger("Attack");
                 else if(canAnimationWorkWhenNoEnnemiesInRange)
                     attackAnimation.SetTrigger("Attack");
+
+                if (damageEnemies.Length > 0)
+                {
+                    GameObject particle = Instantiate(attackTouchParticle, attackPos.position, transform.rotation);
+                    Destroy(particle, 2);
+                }
 
                 for (int i = 0; i < damageEnemies.Length; i++)
                 {

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip nightSteps;
     [SerializeField] private AudioSource footsteps;
 
+    [SerializeField] private ParticleSystem dustParticle;
+
     private AudioClip lastAudio; 
 
 
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
             if (movement != Vector3.zero && !this.GetComponent<Animator>().GetBool("isWalking"))
             {
                 footsteps.Play();
+                dustParticle.Play();
                 this.GetComponent<Animator>().SetBool("isWalking", true);
                 this.GetComponent<Animator>().SetBool("isIdle", false);
             }

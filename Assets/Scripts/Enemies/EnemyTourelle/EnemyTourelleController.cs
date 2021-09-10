@@ -18,6 +18,8 @@ public class EnemyTourelleController : MonoBehaviour
 
     [SerializeField] private float damagePlayerOnHit = 50f;
 
+    [SerializeField] private GameObject detectPlayerParticle;
+
     private bool isPlayerClipped;
     
 
@@ -51,7 +53,11 @@ public class EnemyTourelleController : MonoBehaviour
                 {
                     enemyAnimator.GetComponent<Animator>().SetBool("isDashing", true);
                     enemyAnimator.SetFloat("powerDash", powerDash);
-                }
+                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                    particle.transform.SetParent(transform);
+                    Destroy(particle, 5);
+
+            }
 
             if(Vector2.Distance(playerDetection.transform.position, this.transform.position) <= 2 && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player") && !isPlayerClipped)
             {

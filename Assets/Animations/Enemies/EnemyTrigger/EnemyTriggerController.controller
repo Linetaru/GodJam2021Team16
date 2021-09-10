@@ -11,6 +11,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isPatrolling
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: mustIdle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4770017061315810154}
   m_Solo: 0
@@ -114,6 +117,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isPatrolling
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: mustIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1906940697249383817}
@@ -786,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca1b8228dc8f5a4aaa673caeed19c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  searchingParticle: {fileID: 8213260898781464202, guid: c54a19b54c92c104097c8a13d6741e81, type: 3}
 --- !u!114 &8480730841934556557
 MonoBehaviour:
   m_ObjectHideFlags: 1
