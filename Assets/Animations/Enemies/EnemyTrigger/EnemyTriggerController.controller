@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchingParticle: {fileID: 8213260898781464202, guid: c54a19b54c92c104097c8a13d6741e81, type: 3}
+  interrogationParticle: {fileID: 6977265747873832880, guid: 996c77631f452c0479fb71f2a4ea22b7, type: 3}
 --- !u!114 &8480730841934556557
 MonoBehaviour:
   m_ObjectHideFlags: 1
