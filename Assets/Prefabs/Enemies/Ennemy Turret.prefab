@@ -4964,7 +4964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerDash: 15
-  triggerRange: 6
+  triggerRange: 12
   stoppingTimeAfterDash: 1
   dashEffect: {fileID: 977549652}
   layerMask:
@@ -4974,7 +4974,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   damagePlayerOnHit: 50
-  detectPlayerParticle: {fileID: 0}
+  detectPlayerParticle: {fileID: 3092332971116755058, guid: 8a2cb81ff138db64e88a3f29b088c960, type: 3}
   isInFear: 0
 --- !u!114 &-6427436651838396742
 MonoBehaviour:

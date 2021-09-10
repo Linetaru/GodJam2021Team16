@@ -238,6 +238,7 @@ MonoBehaviour:
   nightSteps: {fileID: 8300000, guid: b173220dbf0492f4ca5f392613facbe2, type: 3}
   footsteps: {fileID: 0}
   dustParticle: {fileID: 6928557914848354973}
+  characterSound: {fileID: 0}
 --- !u!61 &4800936197454586476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ MonoBehaviour:
   startBtwAttack: 0.3
   night: 0
   attackTouchParticle: {fileID: 1216448780873004832, guid: 2d1b51e824306a9428313bd5e8897d79, type: 3}
-  attackRange: 2.02
+  attackRange: 4
   attackPos: {fileID: 4800936196220428464}
   Ennemy:
     serializedVersion: 2
@@ -290,6 +291,7 @@ MonoBehaviour:
   attackAnimation: {fileID: 8823163841605097652}
   offset: {x: 3, y: 0, z: 0}
   playerID: 0
+  attackSound: {fileID: 0}
 --- !u!114 &882323240873954351
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem dustParticle;
 
-    private AudioClip lastAudio; 
+    [SerializeField] private AudioSource characterSound;
 
 
     private float _currentHealth;
@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void changeNightFootsteps()
     {
+        characterSound.Play();
         footsteps.Stop();
         footsteps.clip = nightSteps;
         footsteps.Play();
