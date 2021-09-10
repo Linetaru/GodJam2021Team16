@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         _spriteRenderer.enabled = showSpawner;
     }
 
-    public void SpawnEnemy()
+    public bool SpawnEnemy()
     {
         int currentDay = DayNightCycleManager.current.getCurrentDay();
 
@@ -34,6 +34,9 @@ public class EnemySpawner : MonoBehaviour
             if (entity.dayOfSpawn <= currentDay)
                 possibleSpawning.Add(entity);
         }
+
+        if (possibleSpawning.Count <= 0)
+            return false;
 
         int selectedEntityToSpawn = Random.Range(0, possibleSpawning.Count);
 
@@ -46,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
             int selectedPatrolPath = Random.Range(0, patrolSpotsPossible.Length);
             enemySpawned.GetComponent<EnemyTriggerController>().moveSpots = patrolSpotsPossible[selectedPatrolPath];
         }
+        return true;
     }
 
     private void OnDrawGizmos()

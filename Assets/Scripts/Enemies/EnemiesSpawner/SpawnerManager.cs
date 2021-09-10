@@ -14,13 +14,23 @@ public class SpawnerManager : MonoBehaviour
         _spawners = GameObject.FindGameObjectsWithTag("Spawner");
     }
 
+    int _numberOfTriesToSpawnMax = 10;
+
     public void MakeSpawnerSpawnAEntity()
     {
-        int spawnerIndex = Random.Range(0, _spawners.Length);
         if (_spawners.Length > 0)
         {
+            int spawnerIndex = Random.Range(0, _spawners.Length);
+
             EnemySpawner spawner = _spawners[spawnerIndex].GetComponent<EnemySpawner>();
-            spawner.SpawnEnemy();
+            int numberOfTries = 0;
+            while (!spawner.SpawnEnemy() && numberOfTries < _numberOfTriesToSpawnMax)
+            {
+                spawnerIndex = Random.Range(0, _spawners.Length);
+                spawner = _spawners[spawnerIndex].GetComponent<EnemySpawner>();
+                numberOfTries++;
+            }
+            numberOfTries = 0;
 
         }
     }
