@@ -53,7 +53,7 @@ public class EnemyTourelleController : MonoBehaviour
                 {
                     enemyAnimator.GetComponent<Animator>().SetBool("isDashing", true);
                     enemyAnimator.SetFloat("powerDash", powerDash);
-                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 2.5f, 2), transform.rotation);
+                    GameObject particle = Instantiate(detectPlayerParticle, new Vector3(transform.position.x, transform.position.y + 3.2f, 2), transform.rotation);
                     particle.transform.SetParent(transform);
                     Destroy(particle, 5);
 

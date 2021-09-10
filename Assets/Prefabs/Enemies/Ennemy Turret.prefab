@@ -4974,7 +4974,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   damagePlayerOnHit: 50
-  detectPlayerParticle: {fileID: 3092332971116755058, guid: 8a2cb81ff138db64e88a3f29b088c960, type: 3}
+  detectPlayerParticle: {fileID: 4934499224096918937, guid: 199827ba38d500f489c4e24d0edbc7f5, type: 3}
   isInFear: 0
 --- !u!114 &-6427436651838396742
 MonoBehaviour:
